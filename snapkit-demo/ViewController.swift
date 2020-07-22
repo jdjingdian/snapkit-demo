@@ -19,16 +19,17 @@ struct MultiContact {
     var person: [Contact]
 }
 
+// class
+
 class ViewController: UIViewController {
     
-    var group = [
-        MultiContact(position: "Leader", person: [Contact(name: "Sophie Yang", email: "soyang@xogrp.com")]),
-        MultiContact(position: "member", person: [Contact(name: "Ficow Shen", email: "fshen@xogrp.com"),Contact(name: "Kary Huang", email: "khuang@xogrp.com"),Contact(name: "Sue Mo", email: "smo@xogrp.com"),Contact(name: "Wiley Wan", email: "wwan@theknotww.com"),Contact(name: "Derek Jing", email: "djing@theknotww.com")]),
-        
-        MultiContact(position: "Resign", person: [Contact(name: "Tank Tan", email: "tatan@xogrp.com")])
-    
-    
-    ]
+    var group = [MultiContact(position: "Leader", person: [Contact(name: "Sophie Yang", email: "soyang@xogrp.com")]),
+                 MultiContact(position: "member", person: [Contact(name: "Ficow Shen", email: "fshen@xogrp.com"),
+                                                           Contact(name: "Kary Huang", email: "khuang@xogrp.com"),
+                                                           Contact(name: "Sue Mo", email: "smo@xogrp.com"),
+                                                           Contact(name: "Wiley Wan", email: "wwan@theknotww.com"),
+                                                           Contact(name: "Derek Jing", email: "djing@theknotww.com")]),
+                 MultiContact(position: "Resign", person: [Contact(name: "Tank Tan", email: "tatan@xogrp.com")])]
     
 //    let group = [
 //        ("Leader", ["Sophie Yang"]),
@@ -42,10 +43,11 @@ class ViewController: UIViewController {
         myTable.delegate = self
         myTable.dataSource = self
         myTable.register(MyTableViewCell.self, forCellReuseIdentifier: MyTableViewCell.identifier)
-        myTable.backgroundColor = UIColor.white
+        myTable.backgroundColor = .white
         view.addSubview(myTable)
         myTable.snp.makeConstraints{ (make) in
-            make.top.leading.bottom.trailing.equalToSuperview()
+//            make.top.leading.bottom.trailing.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
     }
@@ -58,9 +60,10 @@ extension ViewController: UITableViewDelegate {
         view.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 0.5)
         let viewLabel = UILabel(frame: CGRect(x: 10, y: 0, width: UIScreen.main.bounds.size.width, height: 30))//(frame: CGRect(x: 10, y: 0, width: UIScreen.main.bounds.size.width, height: 30))
         viewLabel.text = group[section].position
-        viewLabel.textColor = UIColor.black
+        viewLabel.textColor = .black
         view.addSubview(viewLabel)
-        tableView.addSubview(view)
+//        tableView.addSubview(view)
+//        table view reuse 内存池
         return view
     }
     
@@ -80,6 +83,7 @@ extension ViewController: UITableViewDelegate {
         cell.popUp.isHidden = !cell.popUp.isHidden
         cell.setPop(with: group[indexPath.section].person[indexPath.row].email)
     }
+
 }
 
 extension ViewController: UITableViewDataSource {
@@ -92,6 +96,8 @@ extension ViewController: UITableViewDataSource {
         cell.setupCell(with: group[indexPath.section].person[indexPath.row].name)
         return cell
     }
+    
+//    header
     
     
 }
