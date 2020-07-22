@@ -1,0 +1,6 @@
+framework module Pods_snapkit_demoTests {
+  umbrella header "Pods-snapkit-demoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
