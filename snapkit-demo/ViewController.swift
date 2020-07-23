@@ -9,34 +9,46 @@
 import UIKit
 import SnapKit
 
-struct Contact{
-    var name: String
-    var email: String
-}
-
-struct MultiContact {
-    var position: String
-    var person: [Contact]
-}
+// model
+// mvvm-mvc
+//view model test
+//struct Contact{
+//    var name: String
+//    var email: String
+//}
+//
+//struct MultiContact {
+//    var position: String
+//    var person: [Contact]
+//}
 
 // class
+// life cycle
+
 
 class ViewController: UIViewController {
+    var group = [
+        MultiContact(position: "Leader", person: [Contact(name: "Sophie Yang", email: "soyang@xogrp.com")]),
+        MultiContact(position: "Member", person: [Contact(name: "Ficow Shen", email: "fshen@xogrp.com"),
+                                                  Contact(name: "Kary Huang", email: "khuang@xogrp.com"),
+                                                  Contact(name: "Sue Mo", email: "smo@xogrp.com"),
+                                                  Contact(name: "Wiley Wan", email: "wwan@theknotww.com"),
+                                                  Contact(name: "Derek Jing", email: "djing@theknotww.com")]),
+        MultiContact(position: "Resign", person: [Contact(name: "Tank Tan", email: "tatan@xogrp.com")])
+    ]
     
-    var group = [MultiContact(position: "Leader", person: [Contact(name: "Sophie Yang", email: "soyang@xogrp.com")]),
-                 MultiContact(position: "Member", person: [Contact(name: "Ficow Shen", email: "fshen@xogrp.com"),
-                                                           Contact(name: "Kary Huang", email: "khuang@xogrp.com"),
-                                                           Contact(name: "Sue Mo", email: "smo@xogrp.com"),
-                                                           Contact(name: "Wiley Wan", email: "wwan@theknotww.com"),
-                                                           Contact(name: "Derek Jing", email: "djing@theknotww.com")]),
-                 MultiContact(position: "Resign", person: [Contact(name: "Tank Tan", email: "tatan@xogrp.com")])]
-    
-//    let group = [
-//        ("Leader", ["Sophie Yang"]),
-//        ("Member", ["Ficow Shen", "Kary Huang", "Sue Mo", "Wiley Wan", "Derek Jing"]),
-//        ("Resign", ["Tank Tan"])
-//    ]
-    
+//    override func viewWillAppear(_ animated: Bool) {
+//
+//    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        <#code#>
+//    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        <#code#>
+//    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        <#code#>
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let myTable = UITableView()
@@ -44,11 +56,14 @@ class ViewController: UIViewController {
         myTable.dataSource = self
         myTable.estimatedRowHeight = 190.0
         myTable.rowHeight = UITableView.automaticDimension
-        myTable.register(MyTableViewCell.self, forCellReuseIdentifier: MyTableViewCell.identifier)
+        //        myTable.register(MyTableViewCell.self, forCellReuseIdentifier: MyTableViewCell.identifier)
+        myTable.register(LeaderTableViewCell.self, forCellReuseIdentifier: LeaderTableViewCell.identifier1)
+        myTable.register(MemberTableViewCell.self, forCellReuseIdentifier: MemberTableViewCell.identifier2)
+        myTable.register(ResignTableViewCell.self, forCellReuseIdentifier: ResignTableViewCell.identifier3)
         myTable.backgroundColor = .white
         view.addSubview(myTable)
         myTable.snp.makeConstraints{ (make) in
-//            make.top.leading.bottom.trailing.equalToSuperview()
+            //            make.top.leading.bottom.trailing.equalToSuperview()
             make.edges.equalToSuperview()
         }
         
@@ -56,48 +71,73 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 0.5)
-        let viewLabel = UILabel(frame: CGRect(x: 10, y: 0, width: UIScreen.main.bounds.size.width, height: 30))//(frame: CGRect(x: 10, y: 0, width: UIScreen.main.bounds.size.width, height: 30))
-        viewLabel.text = group[section].position
-        viewLabel.textColor = .black
-        view.addSubview(viewLabel)
-//        tableView.addSubview(view)
-//        table view reuse 内存池
-        return view
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-//        return group.count
         return group.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return group[section].1.count
         return group[section].person.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(group[indexPath.section].person[indexPath.row].name)
-        let cell = tableView.cellForRow(at: indexPath) as! MyTableViewCell
-        cell.popUp.isHidden = !cell.popUp.isHidden
-        cell.setPop(with: group[indexPath.section].person[indexPath.row].email)
+//        let cell = tableView.cellForRow(at: indexPath.section) as! LeaderTableViewCell||MemberTableViewCell||ResignTableViewCell
+        switch group[indexPath.section].position{
+        case "Leader":
+            let cell = tableView.cellForRow(at: indexPath) as! LeaderTableViewCell
+            cell.popUp.isHidden = !cell.popUp.isHidden
+        case "Member":
+            let cell = tableView.cellForRow(at: indexPath) as! MemberTableViewCell
+            cell.popUp.isHidden = !cell.popUp.isHidden
+        case "Resign":
+            let cell = tableView.cellForRow(at: indexPath) as! ResignTableViewCell
+            cell.popUp.isHidden = !cell.popUp.isHidden
+        default:
+            print(group[indexPath.section].person[indexPath.row].name)
+        }
+        
     }
-
+    
 }
 
 extension ViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTableViewCell.identifier, for: indexPath) as? MyTableViewCell else { return UITableViewCell()
+        switch group[indexPath.section].position{
+        //            true false
+        case "Leader":
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LeaderTableViewCell.identifier1, for: indexPath) as? LeaderTableViewCell else { return UITableViewCell()
+            }
+            
+            cell.setupCell(with: group[indexPath.section].person[indexPath.row].name, layoutStyle: group[indexPath.section].position )
+            cell.setPop(with: group[indexPath.section].person[indexPath.row].email)
+            return cell
+            
+        case "Member":
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberTableViewCell.identifier2, for: indexPath) as? MemberTableViewCell else { return UITableViewCell()
+            }
+            cell.setupCell(with: group[indexPath.section].person[indexPath.row].name, layoutStyle: group[indexPath.section].position )
+            cell.setPop(with: group[indexPath.section].person[indexPath.row].email)
+            return cell
+        case "Resign":
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ResignTableViewCell.identifier3, for: indexPath) as? ResignTableViewCell else { return UITableViewCell()
+            }
+            cell.setupCell(with: group[indexPath.section].person[indexPath.row].name, layoutStyle: group[indexPath.section].position )
+            cell.setPop(with: group[indexPath.section].person[indexPath.row].email)
+            return cell
+            
+        default:
+            return UITableViewCell()
+            
         }
-        cell.setupCell(with: group[indexPath.section].person[indexPath.row].name, layoutStyle: group[indexPath.section].position )//group[indexPath.section].person[indexPath.row].name, layoutStyle: group[indexPath.section].position
-        return cell
     }
-//    header
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return group[section].position
+    }
+    
+    
 }
 
 
