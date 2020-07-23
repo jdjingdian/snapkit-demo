@@ -24,7 +24,7 @@ struct MultiContact {
 class ViewController: UIViewController {
     
     var group = [MultiContact(position: "Leader", person: [Contact(name: "Sophie Yang", email: "soyang@xogrp.com")]),
-                 MultiContact(position: "member", person: [Contact(name: "Ficow Shen", email: "fshen@xogrp.com"),
+                 MultiContact(position: "Member", person: [Contact(name: "Ficow Shen", email: "fshen@xogrp.com"),
                                                            Contact(name: "Kary Huang", email: "khuang@xogrp.com"),
                                                            Contact(name: "Sue Mo", email: "smo@xogrp.com"),
                                                            Contact(name: "Wiley Wan", email: "wwan@theknotww.com"),
@@ -42,6 +42,8 @@ class ViewController: UIViewController {
         let myTable = UITableView()
         myTable.delegate = self
         myTable.dataSource = self
+        myTable.estimatedRowHeight = 190.0
+        myTable.rowHeight = UITableView.automaticDimension
         myTable.register(MyTableViewCell.self, forCellReuseIdentifier: MyTableViewCell.identifier)
         myTable.backgroundColor = .white
         view.addSubview(myTable)
@@ -92,14 +94,10 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTableViewCell.identifier, for: indexPath) as? MyTableViewCell else { return UITableViewCell()
         }
-//        cell.setupCell(with: group[indexPath.section].1[indexPath.row])
-        cell.setupCell(with: group[indexPath.section].person[indexPath.row].name)
+        cell.setupCell(with: group[indexPath.section].person[indexPath.row].name, layoutStyle: group[indexPath.section].position )//group[indexPath.section].person[indexPath.row].name, layoutStyle: group[indexPath.section].position
         return cell
     }
-    
 //    header
-    
-    
 }
 
 
