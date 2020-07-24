@@ -98,6 +98,14 @@ extension ViewController: UITableViewDelegate {
         
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+          return true
+      }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.delete
+    }
+    
 }
 
 extension ViewController: UITableViewDataSource {
@@ -136,6 +144,16 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return group[section].position
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete){
+            group[indexPath.section].person.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        
+     
+    }
+    
     
     
 }
