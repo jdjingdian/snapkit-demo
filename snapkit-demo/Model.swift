@@ -7,15 +7,6 @@
 //
 
 import Foundation
-//struct Contact{
-//    var name: String
-//    var email: String
-//}
-//
-//struct MultiContact {
-//    var position: String
-//    var person: [Contact]
-//}
 
 class Contact{
     var name: String
@@ -35,4 +26,7 @@ class MultiContact {
         self.position = position
         self.person = person
     }
+}
+enum Position: String {
+    case leader = "Leader", member = "Member" , resign = "Resign"
 }

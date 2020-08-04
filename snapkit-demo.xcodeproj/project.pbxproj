@@ -18,7 +18,6 @@
 		E459DC4724C68CDA006886B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E459DC4524C68CDA006886B6 /* LaunchScreen.storyboard */; };
 		E459DC5224C68CDA006886B6 /* snapkit_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459DC5124C68CDA006886B6 /* snapkit_demoTests.swift */; };
 		E459DC5D24C68CDA006886B6 /* snapkit_demoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459DC5C24C68CDA006886B6 /* snapkit_demoUITests.swift */; };
-		E4992A9D24C6F63D00528F46 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4992A9C24C6F63D00528F46 /* MyTableViewCell.swift */; };
 		E49D1C5124C92FF9003DD14C /* LeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D1C5024C92FF9003DD14C /* LeaderTableViewCell.swift */; };
 		E49D1C5324C9301A003DD14C /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D1C5224C9301A003DD14C /* MemberTableViewCell.swift */; };
 		E49D1C5524C9302D003DD14C /* ResignTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D1C5424C9302D003DD14C /* ResignTableViewCell.swift */; };
@@ -66,7 +65,6 @@
 		E459DC5824C68CDA006886B6 /* snapkit-demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "snapkit-demoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E459DC5C24C68CDA006886B6 /* snapkit_demoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snapkit_demoUITests.swift; sourceTree = "<group>"; };
 		E459DC5E24C68CDA006886B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4992A9C24C6F63D00528F46 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		E49D1C5024C92FF9003DD14C /* LeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderTableViewCell.swift; sourceTree = "<group>"; };
 		E49D1C5224C9301A003DD14C /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
 		E49D1C5424C9302D003DD14C /* ResignTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignTableViewCell.swift; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 				E459DC4324C68CDA006886B6 /* Assets.xcassets */,
 				E459DC4524C68CDA006886B6 /* LaunchScreen.storyboard */,
 				E459DC4824C68CDA006886B6 /* Info.plist */,
-				E4992A9C24C6F63D00528F46 /* MyTableViewCell.swift */,
 				E49D1C5024C92FF9003DD14C /* LeaderTableViewCell.swift */,
 				E49D1C5224C9301A003DD14C /* MemberTableViewCell.swift */,
 				E49D1C5424C9302D003DD14C /* ResignTableViewCell.swift */,
@@ -426,7 +423,6 @@
 				E49D1C5124C92FF9003DD14C /* LeaderTableViewCell.swift in Sources */,
 				E49D1C5324C9301A003DD14C /* MemberTableViewCell.swift in Sources */,
 				E459DC3F24C68CD8006886B6 /* ViewController.swift in Sources */,
-				E4992A9D24C6F63D00528F46 /* MyTableViewCell.swift in Sources */,
 				E459DC3B24C68CD8006886B6 /* AppDelegate.swift in Sources */,
 				E459DC3D24C68CD8006886B6 /* SceneDelegate.swift in Sources */,
 				E49D1C5C24C98E3E003DD14C /* Model.swift in Sources */,

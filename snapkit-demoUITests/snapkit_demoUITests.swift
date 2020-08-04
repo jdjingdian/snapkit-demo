@@ -8,6 +8,7 @@
 
 import XCTest
 
+
 class snapkit_demoUITests: XCTestCase {
 
     override func setUpWithError() throws {
@@ -23,13 +24,26 @@ class snapkit_demoUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    
+    func testUI() throws {
+        
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        wait(for: .init(), timeout: 5)
+        let tablesQuery = app.tables
+        let nameFicowShenStaticText = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Name:Ficow Shen"]/*[[".cells.staticTexts[\"Name:Ficow Shen\"]",".staticTexts[\"Name:Ficow Shen\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        nameFicowShenStaticText.tap()
+        tablesQuery.cells.otherElements.containing(.staticText, identifier:"Email: fshen@xogrp.com").element.tap()
+        nameFicowShenStaticText.swipeLeft()
+        
+        let trailing0Button = tablesQuery/*@START_MENU_TOKEN@*/.buttons["trailing0"]/*[[".cells",".buttons[\"Delete\"]",".buttons[\"trailing0\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        trailing0Button.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Name:Sue Mo"]/*[[".cells.staticTexts[\"Name:Sue Mo\"]",".staticTexts[\"Name:Sue Mo\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeLeft()
+        trailing0Button.tap()
+        app.buttons["Reload Data"].tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Name:Tank Tan"]/*[[".cells.staticTexts[\"Name:Tank Tan\"]",".staticTexts[\"Name:Tank Tan\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+    
     }
 
     func testLaunchPerformance() throws {
