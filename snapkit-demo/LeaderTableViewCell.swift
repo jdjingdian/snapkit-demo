@@ -9,10 +9,6 @@
 import UIKit
 import SnapKit
 
-// navigation controller
-// view controller
-// tab view controller
-
 class LeaderTableViewCell: UITableViewCell {
     static let identifier1 = "LeaderTableViewCell"
     
@@ -66,15 +62,15 @@ class LeaderTableViewCell: UITableViewCell {
             make.centerX.equalToSuperview()
             
         }
+        
         avatar.snp.makeConstraints { (make) in
             make.width.height.equalTo(60)
             //                make.center.equalToSuperview()
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().inset(5)
         }
+        
         titleLabel.snp.makeConstraints { (make) in
-            //                make.top.bottom.equalToSuperview().inset(16)
-            //                make.width.equalToSuperview()
             make.leading.trailing.greaterThanOrEqualToSuperview()
             make.top.equalTo(avatar.snp.bottom).offset(8)
             make.bottom.equalToSuperview().inset(8)

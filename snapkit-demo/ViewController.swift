@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         }
         myButton.addTarget(self, action: #selector(buttonClick), for: .touchUpInside)
     }
+    
     @objc public func buttonClick(){
         print("tapped")
         group = [
@@ -61,17 +62,17 @@ class ViewController: UIViewController {
             MultiContact(position: "Resign", person: [Contact(name: "Tank Tan", email: "tatan@xogrp.com")])
         ]
         myTable.reloadData()
-    }
-}
+    }//还需要改进
 
+}
 extension ViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return group.count
-    }
+    }//返回总共有多少个Section
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return group[section].person.count
-    }
+    }//返回每个Section内有多少个Cell
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(group[indexPath.section].person[indexPath.row].name)
@@ -97,16 +98,15 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
+    }//设置Cell单元为可编辑
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return UITableViewCell.EditingStyle.delete
-    }
+    }//设置编辑类型为左滑删除
     
 }
 
 extension ViewController: UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch group[indexPath.section].position{
@@ -135,10 +135,11 @@ extension ViewController: UITableViewDataSource {
             return UITableViewCell()
             
         }
-    }
+    }//填充每个Cell的内容
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return group[section].position
-    }
+    }//每个Section的标题
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
@@ -147,7 +148,7 @@ extension ViewController: UITableViewDataSource {
                 group.remove(at: indexPath.section)
             }
             tableView.reloadData()
-        }
+        }//删除Cell的内容并重新加载视图
         
         
     }

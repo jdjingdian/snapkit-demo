@@ -60,7 +60,6 @@ class ResignTableViewCell: UITableViewCell {
         
         popUpTitle.snp.makeConstraints{ (make) in
             make.top.trailing.bottom.equalToSuperview().inset(16)
-//            make.trailing.equalTo(30)
             
         }
         avatar.snp.makeConstraints { (make) in
